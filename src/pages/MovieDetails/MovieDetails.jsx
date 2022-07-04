@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useLocation } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
 import { Link, Outlet } from 'react-router-dom';
 
@@ -14,14 +14,18 @@ export const MovieDetails = () => {
   // console.log(movie);
   // console.log(movieId);
 
+  const location = useLocation();
+  const backLinkHref = location.state?.from ?? '/movies';
+
   return (
     <>
       {/* <div>MovieDetails</div> */}
       {/* <div>Now showing product with id - {movieId}</div> */}
       {movie && (
-        <>
+        <main>
+          <Link to={backLinkHref}>Back to movies</Link>
           <div>
-            <div>ID:{}</div>
+            <div>ID:{movie.id}</div>
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
               alt={movie.original_title}
@@ -42,7 +46,7 @@ export const MovieDetails = () => {
             </li>
           </ul>
           <Outlet />
-        </>
+        </main>
       )}
     </>
   );

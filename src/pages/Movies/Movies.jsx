@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
-import { useSearchParams } from 'react-router-dom';
+import { useSearchParams, useLocation } from 'react-router-dom';
 
 export const Movies = () => {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
+  const location = useLocation();
 
   useEffect(() => {
     if (query === '') return;
@@ -49,7 +50,9 @@ export const Movies = () => {
         <ul>
           {movies.results.map(({ id, original_title }) => (
             <li key={id}>
-              <Link to={`/movies/${id}`}>{original_title}</Link>
+              <Link to={`/movies/${id}`} state={{ from: location }}>
+                {original_title}
+              </Link>
             </li>
           ))}
         </ul>
