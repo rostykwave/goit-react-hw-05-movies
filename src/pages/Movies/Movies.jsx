@@ -1,12 +1,12 @@
-import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
-import * as themoviedbAPI from 'services/themoviedb.org-API';
+// import { useEffect, useState } from 'react';
+// import { Link } from 'react-router-dom';
+// import * as themoviedbAPI from 'services/themoviedb.org-API';
 
 export const Movies = () => {
-  const [movies, setMovies] = useState(null);
-  useEffect(() => {
-    themoviedbAPI.getTrending().then(setMovies);
-  }, []);
+  // const [movies, setMovies] = useState(null);
+  // useEffect(() => {
+  //   themoviedbAPI.getTrending().then(setMovies);
+  // }, []);
 
   //   (async function trendingMovies() {
   //     try {
@@ -15,20 +15,17 @@ export const Movies = () => {
   //       console.log(data);
   //     } catch (error) {}
   //   })();
-  console.log(movies);
+  // console.log(movies);
 
   return (
     <div>
       <div>Movies</div>
-      {movies && (
-        <ul>
-          {movies.results.map(({ id, original_title }) => (
-            <li key={id}>
-              <Link to={`${id}`}>{original_title}</Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      <form>
+        <label>
+          <input />
+        </label>
+        <button type="submit">Search</button>
+      </form>
     </div>
   );
 };
