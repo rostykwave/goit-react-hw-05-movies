@@ -26,3 +26,15 @@ export function getMovieDetails(id) {
     `${BASE_URL}/movie/${id}?api_key=${KEY}&language=en-US`
   );
 }
+
+export function getMovieCredits(id) {
+  return fetchErrorHandling(
+    `${BASE_URL}/movie/${id}/credits?api_key=${KEY}&language=en-US`
+  );
+}
+
+export function getMovieReviews(id, page = 1) {
+  return fetchErrorHandling(
+    `${BASE_URL}/movie/${id}/reviews?api_key=${KEY}&language=en-US&page=${page}`
+  );
+}

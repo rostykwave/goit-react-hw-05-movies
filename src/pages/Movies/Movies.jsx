@@ -22,7 +22,7 @@ export const Movies = () => {
       <div>Movies</div>
       {movies && (
         <ul>
-          {movies.results.map(({ id, original_title, original_name }) => (
+          {movies.results.map(({ id, original_title }) => (
             <li key={id}>
               <Link to={`${id}`}>{original_title}</Link>
             </li>
