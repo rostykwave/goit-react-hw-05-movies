@@ -1,12 +1,24 @@
-// import { useEffect, useState } from 'react';
-// import { Link } from 'react-router-dom';
-// import * as themoviedbAPI from 'services/themoviedb.org-API';
+import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import * as themoviedbAPI from 'services/themoviedb.org-API';
+import { useSearchParams } from 'react-router-dom';
 
 export const Movies = () => {
-  // const [movies, setMovies] = useState(null);
-  // useEffect(() => {
-  //   themoviedbAPI.getTrending().then(setMovies);
-  // }, []);
+  const [movies, setMovies] = useState(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const query = searchParams.get('query');
+
+  useEffect(() => {
+    if (query === '') return;
+    console.log('fetch search');
+
+    async function fetchMoviesOnQuery() {
+      const movies = await themoviedbAPI.searchMovies(query);
+      setMovies(movies);
+    }
+
+    fetchMoviesOnQuery();
+  }, [query]);
 
   //   (async function trendingMovies() {
   //     try {
@@ -16,16 +28,32 @@ export const Movies = () => {
   //     } catch (error) {}
   //   })();
   // console.log(movies);
+  const handleSubmit = e => {
+    e.preventDefault();
+    const form = e.currentTarget;
+
+    setSearchParams({ query: form.elements.query.value });
+    form.reset();
+  };
 
   return (
     <div>
       <div>Movies</div>
-      <form>
+      <form onSubmit={handleSubmit}>
         <label>
-          <input />
+          <input type="text" name="query" />
         </label>
         <button type="submit">Search</button>
       </form>
+      {movies && (
+        <ul>
+          {movies.results.map(({ id, original_title }) => (
+            <li key={id}>
+              <Link to={`/movies/${id}`}>{original_title}</Link>
+            </li>
+          ))}
+        </ul>
+      )}
     </div>
   );
 };

@@ -21,7 +21,7 @@ export const MovieDetails = () => {
       {movie && (
         <>
           <div>
-            <div>ID:{movie.id}</div>
+            <div>ID:{}</div>
             <img
               src={`https://image.tmdb.org/t/p/w500${movie.backdrop_path}`}
               alt={movie.original_title}
@@ -35,7 +35,7 @@ export const MovieDetails = () => {
           </div>
           <ul>
             <li>
-              <Link to="cast">Cast</Link>
+              <Link to="cast">Cast</Link>y
             </li>
             <li>
               <Link to="reviews">Reviews</Link>
