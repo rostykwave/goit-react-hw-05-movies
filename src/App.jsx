@@ -28,3 +28,6 @@ export const App = () => {
 
 ///State machine
 //add all API functions//done
+//React.lazy() і Suspense
+//theme
+//prettyness
