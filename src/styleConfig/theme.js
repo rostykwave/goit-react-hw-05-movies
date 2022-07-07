@@ -20,4 +20,7 @@ export const theme = Object.freeze({
     xl: '48px',
     xxl: '64px',
   },
+  shadows: {
+    header: '0px 16px 50px 2px rgba(0, 0, 0, 0.27)',
+  },
 });
