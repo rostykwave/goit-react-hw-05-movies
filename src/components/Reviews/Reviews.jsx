@@ -13,8 +13,7 @@ export const Reviews = () => {
   console.log(reviews);
 
   return (
-    <div>
-      <h2>Reviews {movieId}</h2>
+    <>
       {reviews &&
         reviews.results.map(({ id, author, content }) => (
           <li key={id}>
@@ -25,6 +24,6 @@ export const Reviews = () => {
       {reviews && reviews.results.length === 0 && (
         <p>There isn`t any reviews for this movie</p>
       )}
-    </div>
+    </>
   );
 };

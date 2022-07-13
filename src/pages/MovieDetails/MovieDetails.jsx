@@ -4,7 +4,7 @@ import * as themoviedbAPI from 'services/themoviedb.org-API';
 import { Link, Outlet } from 'react-router-dom';
 import { Avatar } from './MovieDetails.styled';
 import { Box } from 'styleConfig/Box';
-import { StyledGoBackLink } from 'components/backLink/backLink';
+import { StyledGoBackLink } from 'components/goBackLink/goBackLink';
 
 export const MovieDetails = () => {
   const { movieId } = useParams();
@@ -18,6 +18,7 @@ export const MovieDetails = () => {
   // console.log(movieId);
 
   const location = useLocation();
+  console.log('location.state', location);
   const backLinkHref = location.state?.from ?? '/movies';
 
   return (
@@ -26,8 +27,8 @@ export const MovieDetails = () => {
       {/* <div>Now showing product with id - {movieId}</div> */}
       {movie && (
         <main>
-          <StyledGoBackLink to={backLinkHref}>←Go back</StyledGoBackLink>
-          {/* <Link to={backLinkHref}>Back to movies</Link> */}
+          <StyledGoBackLink to={backLinkHref}>← Go back</StyledGoBackLink>
+
           <Box display="flex">
             <Avatar>
               <img
@@ -51,14 +52,21 @@ export const MovieDetails = () => {
             <h3>Additional information</h3>
             <ul>
               <li>
-                <Link to="cast">Cast</Link>
+                <Link to="cast" state={{ from: location }}>
+                  Cast
+                </Link>
               </li>
               <li>
-                <Link to="reviews">Reviews</Link>
+                <Link to="reviews" state={{ from: location }}>
+                  Reviews
+                </Link>
               </li>
             </ul>
           </Box>
-          <Outlet />
+          {/* <Outlet /> */}
+          <Box minHeight="20vh">
+            <Outlet />
+          </Box>
         </main>
       )}
     </>

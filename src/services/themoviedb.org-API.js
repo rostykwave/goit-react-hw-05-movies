@@ -17,7 +17,7 @@ export function getTrending() {
 
 export function searchMovies(query = 'cat', page = 1) {
   return fetchErrorHandling(
-    `${BASE_URL}/search/movie?api_key=${KEY}&language=en-US&include_adult=false&query=${query}&page=${page}`
+    `${BASE_URL}/search/movie?api_key=${KEY}&language=en-US&region=US&include_adult=false&query=${query}&page=${page}`
   );
 }
 

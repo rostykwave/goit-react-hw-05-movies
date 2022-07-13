@@ -7,10 +7,11 @@ export const Movies = () => {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
+  console.log(query);
   const location = useLocation();
 
   useEffect(() => {
-    if (query === '') return;
+    if (query === '' || query === null) return;
     console.log('fetch search');
 
     async function fetchMoviesOnQuery() {

@@ -14,14 +14,12 @@ export const Cast = () => {
   console.log(cast);
 
   return (
-    <div>
-      <h2>Cast {movieId}</h2>
+    <>
       {cast && (
         <CastList>
           {cast.cast.map(({ id, name, profile_path, character }) => (
             <li key={id}>
               <ActorsAvatar>
-                {' '}
                 <img
                   src={`https://image.tmdb.org/t/p/w500${profile_path}`}
                   alt={name}
@@ -34,6 +32,6 @@ export const Cast = () => {
           ))}
         </CastList>
       )}
-    </div>
+    </>
   );
 };
