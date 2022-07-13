@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
 import { ActorsAvatar, CastList } from './Cast.styled';
+import defaultIMG from 'images/default/default-avatar-1.jpg';
 
 export const Cast = () => {
   const { movieId } = useParams();
@@ -10,8 +11,6 @@ export const Cast = () => {
   useEffect(() => {
     themoviedbAPI.getMovieCredits(movieId).then(setCast);
   }, [movieId]);
-
-  console.log(cast);
 
   return (
     <>
@@ -23,6 +22,10 @@ export const Cast = () => {
                 <img
                   src={`https://image.tmdb.org/t/p/w500${profile_path}`}
                   alt={name}
+                  onError={event => {
+                    event.target.src = defaultIMG;
+                    event.onerror = null;
+                  }}
                 />
               </ActorsAvatar>
 

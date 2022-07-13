@@ -14,17 +14,11 @@ export const MovieDetails = () => {
     themoviedbAPI.getMovieDetails(movieId).then(setMovie);
   }, [movieId]);
 
-  // console.log(movie);
-  // console.log(movieId);
-
   const location = useLocation();
-  console.log('location.state', location);
   const backLinkHref = location.state?.from ?? '/movies';
 
   return (
     <>
-      {/* <div>MovieDetails</div> */}
-      {/* <div>Now showing product with id - {movieId}</div> */}
       {movie && (
         <main>
           <StyledGoBackLink to={backLinkHref}>← Go back</StyledGoBackLink>
@@ -44,8 +38,13 @@ export const MovieDetails = () => {
               <p>User Score: {movie.vote_average}</p>
               <h3>Overview</h3>
               <p>{movie.overview}</p>
+
               <h3>Genres</h3>
-              <p>{movie.genres.map(g => g.name).join(' ')}</p>
+              <p>
+                {movie.genres.length
+                  ? movie.genres.map(g => g.name).join(' ')
+                  : 'genres are not described'}
+              </p>
             </Box>
           </Box>
           <Box borderTop="1px solid" borderBottom="1px solid">

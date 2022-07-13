@@ -30,4 +30,4 @@ export const App = () => {
 //add all API functions//done
 //React.lazy() і Suspense
 //theme//done
-//prettyness
+//prettyness//done

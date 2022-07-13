@@ -10,14 +10,12 @@ export const Reviews = () => {
     themoviedbAPI.getMovieReviews(movieId).then(setReviews);
   }, [movieId]);
 
-  console.log(reviews);
-
   return (
     <>
       {reviews &&
         reviews.results.map(({ id, author, content }) => (
           <li key={id}>
-            <h3>{author}</h3>
+            <h3>Author: {author}</h3>
             <p>{content}</p>
           </li>
         ))}
