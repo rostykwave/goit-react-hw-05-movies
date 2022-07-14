@@ -62,7 +62,6 @@ export const MovieDetails = () => {
               </li>
             </ul>
           </Box>
-          {/* <Outlet /> */}
           <Box minHeight="40vh">
             <Outlet />
           </Box>
