@@ -3,7 +3,7 @@ import { Home } from 'pages/Home/Home';
 import { Movies } from 'pages/Movies/Movies';
 import { NotFound } from 'pages/NotFound/NotFound';
 import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
-import { SharedLayout } from 'components/SharedLayout/SharedLayout';
+import { SharedLayout } from 'pages/SharedLayout/SharedLayout';
 import { Reviews } from 'components/Reviews/Reviews';
 import { Cast } from 'components/Cast/Cast';
 
