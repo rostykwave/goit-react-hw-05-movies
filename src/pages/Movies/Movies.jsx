@@ -21,7 +21,7 @@ const Movies = () => {
     async function fetchMoviesOnQuery() {
       try {
         setStatus(Status.PENDING);
-        const data = await themoviedbAPI.getTrending();
+        const data = await themoviedbAPI.searchMovies(query);
 
         setMovies(data);
         setStatus(Status.RESOLVED);
