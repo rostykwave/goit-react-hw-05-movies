@@ -6,7 +6,6 @@ import { Suspense } from 'react';
 import { Avatar } from './MovieDetails.styled';
 import { Box } from 'styleConfig/Box';
 import { StyledGoBackLink } from 'components/goBackLink/goBackLink';
-import { Loader } from 'components/Loader/Loader';
 import {
   Status,
   StateMachine,
