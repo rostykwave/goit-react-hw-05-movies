@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
 
-export const Home = () => {
+const Home = () => {
   const [movies, setMovies] = useState(null);
   useEffect(() => {
     themoviedbAPI.getTrending().then(setMovies);
@@ -36,3 +36,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;

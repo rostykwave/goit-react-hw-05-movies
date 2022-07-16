@@ -1,32 +1,38 @@
 import { Routes, Route } from 'react-router-dom';
-import { Home } from 'pages/Home/Home';
-import { Movies } from 'pages/Movies/Movies';
-import { NotFound } from 'pages/NotFound/NotFound';
-import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
+// import Home from 'pages/Home/Home';
+// import { Movies } from 'pages/Movies/Movies';
+// import NotFound from 'pages/NotFound/NotFound';
+// import { MovieDetails } from 'pages/MovieDetails/MovieDetails';
 import { SharedLayout } from 'pages/SharedLayout/SharedLayout';
-import { Reviews } from 'components/Reviews/Reviews';
-import { Cast } from 'components/Cast/Cast';
+// import { Reviews } from 'components/Reviews/Reviews';
+// import { Cast } from 'components/Cast/Cast';
+import { lazy } from 'react';
+
+const Home = lazy(() => import('pages/Home/Home'));
+const Movies = lazy(() => import('pages/Movies/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails/MovieDetails'));
+const Cast = lazy(() => import('components/Cast/Cast'));
+const Reviews = lazy(() => import('components/Reviews/Reviews'));
+const NotFound = lazy(() => import('pages/NotFound/NotFound'));
 
 export const App = () => {
   return (
-    <>
-      <Routes>
-        <Route path="/" element={<SharedLayout />}>
-          <Route index element={<Home />} />
-          <Route path="/movies" element={<Movies />} />
-          <Route path="/movies/:movieId" element={<MovieDetails />}>
-            <Route path="cast" element={<Cast />} />
-            <Route path="reviews" element={<Reviews />} />
-          </Route>
-          <Route path="/goit-react-hw-05-movies" element={<Home />} />
-          <Route path="/*" element={<NotFound />} />
+    <Routes>
+      <Route path="/" element={<SharedLayout />}>
+        <Route index element={<Home />} />
+        <Route path="/movies" element={<Movies />} />
+        <Route path="/movies/:movieId" element={<MovieDetails />}>
+          <Route path="cast" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
         </Route>
-      </Routes>
-    </>
+        <Route path="/goit-react-hw-05-movies" element={<Home />} />
+        <Route path="/*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 };
 
-//React.lazy() і Suspense
+//React.lazy() і Suspense//done
 ///State machine
 
 //add all API functions//done

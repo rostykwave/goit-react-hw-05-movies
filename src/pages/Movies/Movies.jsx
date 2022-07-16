@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
 import { useSearchParams, useLocation } from 'react-router-dom';
 
-export const Movies = () => {
+const Movies = () => {
   const [movies, setMovies] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const query = searchParams.get('query');
@@ -60,3 +60,5 @@ export const Movies = () => {
     </div>
   );
 };
+
+export default Movies;

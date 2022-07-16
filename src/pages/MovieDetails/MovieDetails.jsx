@@ -2,11 +2,12 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
 import { Link, Outlet } from 'react-router-dom';
+import { Suspense } from 'react';
 import { Avatar } from './MovieDetails.styled';
 import { Box } from 'styleConfig/Box';
 import { StyledGoBackLink } from 'components/goBackLink/goBackLink';
 
-export const MovieDetails = () => {
+const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
 
@@ -63,10 +64,14 @@ export const MovieDetails = () => {
             </ul>
           </Box>
           <Box minHeight="40vh">
-            <Outlet />
+            <Suspense fallback={<div>Loading subpage...</div>}>
+              <Outlet />
+            </Suspense>
           </Box>
         </main>
       )}
     </>
   );
 };
+
+export default MovieDetails;

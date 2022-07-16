@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
-import { ActorsAvatar, CastList } from './Cast.styled';
+import { ActorsAvatar, CastItem, CastList } from './Cast.styled';
 import defaultIMG from 'images/default/default-avatar-1.jpg';
 
-export const Cast = () => {
+const Cast = () => {
   const { movieId } = useParams();
 
   const [cast, setCast] = useState(null);
@@ -17,7 +17,7 @@ export const Cast = () => {
       {cast && (
         <CastList>
           {cast.cast.map(({ id, name, profile_path, character }) => (
-            <li key={id}>
+            <CastItem key={id}>
               <ActorsAvatar>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${profile_path}`}
@@ -28,13 +28,16 @@ export const Cast = () => {
                   }}
                 />
               </ActorsAvatar>
-
-              <h3>{name}</h3>
-              <p>{character}</p>
-            </li>
+              <div>
+                <h3>{name}</h3>
+                <p>{character}</p>
+              </div>
+            </CastItem>
           ))}
         </CastList>
       )}
     </>
   );
 };
+
+export default Cast;
