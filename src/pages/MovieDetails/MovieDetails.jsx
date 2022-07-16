@@ -6,20 +6,44 @@ import { Suspense } from 'react';
 import { Avatar } from './MovieDetails.styled';
 import { Box } from 'styleConfig/Box';
 import { StyledGoBackLink } from 'components/goBackLink/goBackLink';
+import { Loader } from 'components/Loader/Loader';
+import {
+  Status,
+  StateMachine,
+  useStateMachine,
+} from 'components/StateMachine/StateMachine';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
+  const { status, setStatus, error, setError } = useStateMachine();
 
   useEffect(() => {
-    themoviedbAPI.getMovieDetails(movieId).then(setMovie);
-  }, [movieId]);
+    // themoviedbAPI.getMovieDetails(movieId).then(setMovie);
+
+    async function fetchMovieDetails(movieId) {
+      try {
+        setStatus(Status.PENDING);
+        const data = await themoviedbAPI.getMovieDetails(movieId);
+
+        setMovie(data);
+        setStatus(Status.RESOLVED);
+      } catch (error) {
+        setError(error);
+        setStatus(Status.REJECTED);
+      }
+    }
+
+    fetchMovieDetails(movieId);
+  }, [movieId, setError, setStatus]);
 
   const location = useLocation();
   const backLinkHref = location.state?.from ?? '/movies';
 
   return (
     <>
+      <StateMachine status={status} error={error} />
+
       {movie && (
         <main>
           <StyledGoBackLink to={backLinkHref}>← Go back</StyledGoBackLink>
@@ -64,6 +88,7 @@ const MovieDetails = () => {
             </ul>
           </Box>
           <Box minHeight="40vh">
+            {/* <Suspense fallback={<Loader />}> */}
             <Suspense fallback={<div>Loading subpage...</div>}>
               <Outlet />
             </Suspense>

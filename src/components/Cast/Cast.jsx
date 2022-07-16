@@ -3,17 +3,40 @@ import { useParams } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
 import { ActorsAvatar, CastItem, CastList } from './Cast.styled';
 import defaultIMG from 'images/default/default-avatar-1.jpg';
+import {
+  Status,
+  StateMachine,
+  useStateMachine,
+} from 'components/StateMachine/StateMachine';
 
 const Cast = () => {
   const { movieId } = useParams();
-
   const [cast, setCast] = useState(null);
+  const { status, setStatus, error, setError } = useStateMachine();
+
   useEffect(() => {
-    themoviedbAPI.getMovieCredits(movieId).then(setCast);
-  }, [movieId]);
+    // themoviedbAPI.getMovieCredits(movieId).then(setCast);
+
+    async function fetchCast() {
+      try {
+        setStatus(Status.PENDING);
+        const data = await themoviedbAPI.getMovieCredits(movieId);
+
+        setCast(data);
+        setStatus(Status.RESOLVED);
+      } catch (error) {
+        setError(error);
+        setStatus(Status.REJECTED);
+      }
+    }
+
+    fetchCast();
+  }, [movieId, setError, setStatus]);
 
   return (
     <>
+      <StateMachine status={status} error={error} />
+
       {cast && (
         <CastList>
           {cast.cast.map(({ id, name, profile_path, character }) => (

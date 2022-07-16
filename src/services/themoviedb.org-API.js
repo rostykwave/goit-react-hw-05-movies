@@ -1,5 +1,3 @@
-// const URL:`https://api.themoviedb.org/3/movie/550?api_key=c24a579521956747b362db1dbfab545a`;
-
 const BASE_URL = 'https://api.themoviedb.org/3';
 
 const KEY = 'c24a579521956747b362db1dbfab545a';
