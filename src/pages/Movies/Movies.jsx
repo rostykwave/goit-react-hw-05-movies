@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { StateMachine } from 'components/StateMachine/StateMachine';
 import { Status } from 'constants/stateMachineStatus';
 import { useStateMachine } from 'hooks/useStateMachine';
+import { MoviesList } from 'components/MoviesList/MoviesList';
 
 const Movies = () => {
   const [movies, setMovies] = useState(null);
@@ -51,17 +51,7 @@ const Movies = () => {
       </form>
       <StateMachine status={status} error={error} />
 
-      {movies && (
-        <ul>
-          {movies.results.map(({ id, original_title }) => (
-            <li key={id}>
-              <Link to={`/movies/${id}`} state={{ from: location }}>
-                {original_title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      )}
+      {movies && <MoviesList movies={movies} location={location} />}
     </div>
   );
 };
