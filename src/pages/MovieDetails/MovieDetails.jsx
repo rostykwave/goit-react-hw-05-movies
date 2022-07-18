@@ -19,7 +19,7 @@ const MovieDetails = () => {
         setStatus(Status.PENDING);
         const data = await themoviedbAPI.getMovieDetails(movieId);
 
-        setMovie(data);
+        setMovie(data.data);
         setStatus(Status.RESOLVED);
       } catch (error) {
         setError(error);

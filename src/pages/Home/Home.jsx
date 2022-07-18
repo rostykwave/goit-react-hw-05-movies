@@ -16,7 +16,7 @@ const Home = () => {
         setStatus(Status.PENDING);
         const data = await themoviedbAPI.getTrending();
 
-        setMovies(data);
+        setMovies(data.data);
         setStatus(Status.RESOLVED);
       } catch (error) {
         setError(error);

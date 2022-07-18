@@ -22,7 +22,7 @@ const Movies = () => {
         setStatus(Status.PENDING);
         const data = await themoviedbAPI.searchMovies(query);
 
-        setMovies(data);
+        setMovies(data.data);
         setStatus(Status.RESOLVED);
       } catch (error) {
         setError(error);

@@ -18,7 +18,7 @@ const Reviews = () => {
         setStatus(Status.PENDING);
         const data = await themoviedbAPI.getMovieReviews(movieId);
 
-        setReviews(data);
+        setReviews(data.data);
         setStatus(Status.RESOLVED);
       } catch (error) {
         setError(error);

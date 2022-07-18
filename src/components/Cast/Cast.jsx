@@ -20,7 +20,7 @@ const Cast = () => {
         setStatus(Status.PENDING);
         const data = await themoviedbAPI.getMovieCredits(movieId);
 
-        setCast(data);
+        setCast(data.data);
         setStatus(Status.RESOLVED);
       } catch (error) {
         setError(error);
