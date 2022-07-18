@@ -3,11 +3,9 @@ import { useParams } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
 import { ActorsAvatar, CastItem, CastList } from './Cast.styled';
 import defaultIMG from 'images/default/default-avatar-1.jpg';
-import {
-  Status,
-  StateMachine,
-  useStateMachine,
-} from 'components/StateMachine/StateMachine';
+import { StateMachine } from 'components/StateMachine/StateMachine';
+import { Status } from 'constants/stateMachineStatus';
+import { useStateMachine } from 'hooks/useStateMachine';
 
 const Cast = () => {
   const { movieId } = useParams();

@@ -6,11 +6,9 @@ import { Suspense } from 'react';
 import { Avatar } from './MovieDetails.styled';
 import { Box } from 'styleConfig/Box';
 import { StyledGoBackLink } from 'components/goBackLink/goBackLink';
-import {
-  Status,
-  StateMachine,
-  useStateMachine,
-} from 'components/StateMachine/StateMachine';
+import { StateMachine } from 'components/StateMachine/StateMachine';
+import { Status } from 'constants/stateMachineStatus';
+import { useStateMachine } from 'hooks/useStateMachine';
 
 const MovieDetails = () => {
   const { movieId } = useParams();

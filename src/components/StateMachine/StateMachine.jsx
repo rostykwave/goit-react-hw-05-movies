@@ -1,21 +1,7 @@
 import { Loader } from 'components/Loader/Loader';
-import { useState } from 'react';
 import { Box } from 'styleConfig/Box';
 
-const Status = {
-  IDLE: 'idle',
-  PENDING: 'pending',
-  RESOLVED: 'resolved',
-  REJECTED: 'rejected',
-};
-
-const useStateMachine = () => {
-  const [status, setStatus] = useState(Status.IDLE);
-  const [error, setError] = useState({ message: '' });
-  return { status, setStatus, error, setError };
-};
-
-const StateMachine = ({ status, error }) => {
+export const StateMachine = ({ status, error }) => {
   return (
     <>
       {status === 'pending' && <Loader />}
@@ -27,5 +13,3 @@ const StateMachine = ({ status, error }) => {
     </>
   );
 };
-
-export { Status, StateMachine, useStateMachine };

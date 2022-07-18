@@ -1,6 +1,4 @@
-const BASE_URL = 'https://api.themoviedb.org/3';
-
-const KEY = 'c24a579521956747b362db1dbfab545a';
+import { BASE_URL, KEY } from 'constants/apiConstants';
 
 async function fetchErrorHandling(url = '', config = {}) {
   const response = await fetch(url, config);

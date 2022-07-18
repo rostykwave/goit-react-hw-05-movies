@@ -1,11 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import * as themoviedbAPI from 'services/themoviedb.org-API';
-import {
-  Status,
-  StateMachine,
-  useStateMachine,
-} from 'components/StateMachine/StateMachine';
+import { StateMachine } from 'components/StateMachine/StateMachine';
+import { Status } from 'constants/stateMachineStatus';
+import { useStateMachine } from 'hooks/useStateMachine';
 
 const Reviews = () => {
   const { movieId } = useParams();
