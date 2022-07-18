@@ -61,6 +61,6 @@ export const MovieDetailsMain = ({ movie, location }) => {
 };
 
 MovieDetailsMain.propTypes = {
-  movies: PropTypes.object.isRequired,
+  movies: PropTypes.object,
   location: PropTypes.object.isRequired,
 };

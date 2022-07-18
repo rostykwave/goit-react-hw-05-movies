@@ -5,6 +5,7 @@ import { StateMachine } from 'components/StateMachine/StateMachine';
 import { Status } from 'constants/stateMachineStatus';
 import { useStateMachine } from 'hooks/useStateMachine';
 import { MoviesList } from 'components/MoviesList/MoviesList';
+import { MoviesForm } from 'components/MoviesForm/MoviesForm';
 
 const Movies = () => {
   const [movies, setMovies] = useState(null);
@@ -32,23 +33,15 @@ const Movies = () => {
     fetchMoviesOnQuery();
   }, [query, setError, setStatus]);
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const form = e.currentTarget;
-
-    setSearchParams({ query: form.elements.query.value });
-    form.reset();
+  const handleSubmit = ({ query }) => {
+    setSearchParams({ query });
   };
 
   return (
     <div>
       <div>Movies</div>
-      <form onSubmit={handleSubmit}>
-        <label>
-          <input type="text" name="query" />
-        </label>
-        <button type="submit">Search</button>
-      </form>
+      <MoviesForm onSubmit={handleSubmit} />
+
       <StateMachine status={status} error={error} />
 
       {movies && <MoviesList movies={movies} location={location} />}
