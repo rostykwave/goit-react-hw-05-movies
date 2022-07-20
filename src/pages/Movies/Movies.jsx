@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import * as themoviedbAPI from 'services/themoviedb.org-API';
+import * as themoviedbAPI from 'services/moviedb';
 import { useSearchParams, useLocation } from 'react-router-dom';
 import { StateMachine } from 'components/StateMachine/StateMachine';
 import { Status } from 'constants/stateMachineStatus';

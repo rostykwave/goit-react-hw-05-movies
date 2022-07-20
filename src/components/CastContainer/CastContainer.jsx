@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import * as themoviedbAPI from 'services/themoviedb.org-API';
-import { ActorsAvatar, CastItem, CastList } from './Cast.styled';
+import * as themoviedbAPI from 'services/moviedb';
+import { ActorsAvatar, CastItem, CastList } from './CastContainer.styled';
 import defaultIMG from 'images/default/default-avatar-1.jpg';
 import { StateMachine } from 'components/StateMachine/StateMachine';
 import { Status } from 'constants/stateMachineStatus';

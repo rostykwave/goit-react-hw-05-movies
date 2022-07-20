@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import * as themoviedbAPI from 'services/themoviedb.org-API';
+import * as themoviedbAPI from 'services/moviedb';
 import { StateMachine } from 'components/StateMachine/StateMachine';
 import { Status } from 'constants/stateMachineStatus';
 import { useStateMachine } from 'hooks/useStateMachine';

@@ -1,29 +1,20 @@
 import PropTypes from 'prop-types';
-import { Formik, Form, ErrorMessage, Field } from 'formik';
-
 import * as yup from 'yup';
-
-const FormError = ({ name }) => {
-  return <ErrorMessage name={name} render={message => <p>{message}</p>} />;
-};
-
-const schema = yup.object().shape({
-  query: yup.string().min(1).max(13).required(),
-});
-
-const initialValues = {
-  query: '',
-};
+import { Formik, Form, Field } from 'formik';
+import { FormError } from './FormError';
 
 export const MoviesForm = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
     onSubmit(values);
-    // resetForm();
   };
   return (
     <Formik
-      initialValues={initialValues}
-      validationSchema={schema}
+      initialValues={{
+        query: '',
+      }}
+      validationSchema={yup.object().shape({
+        query: yup.string().min(1).max(13).required(),
+      })}
       onSubmit={handleSubmit}
     >
       <Form autoComplete="off">
